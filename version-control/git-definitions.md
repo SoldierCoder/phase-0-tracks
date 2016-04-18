@@ -16,3 +16,7 @@ create backups in your code
 * * A good commit message explains the intent of the changes made so that someone coming upon this later will have a good idea what was done.
 * What is a merge conflict? 
 * * A merge conflist occurs when two people made chages on the same file before merging.
+* What are the 3 stages of a git change and how do you move a file from one stage to the other?
+    - unstaged
+    - staged
+    - committed
