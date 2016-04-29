@@ -11,3 +11,13 @@ section.job {
 .smaller-text {
   font-size: .8em;
 }
+
+#contact-info:hover {
+  font-weight: bold;
+
+}
+
+section section {
+  font-family: "Arial";
+
+}
