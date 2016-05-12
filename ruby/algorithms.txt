@@ -1,0 +1,35 @@
+turn towards elevator
+while doors not open 
+  wait
+while doors open 
+  move inside
+while doors not closed
+  wait
+if person.wearing(power_tie).is_present
+  follow him
+elsif
+  button.labeled(1)
+  button.press
+end
+while doors not open
+  wait
+while doors open
+  exit
+text(Ed.Drain, "elevator navigated")
+
+
+making-tea
+
+choose a mug
+fill mug with water
+open teapot 
+pour water from mug into teapot
+turn stove on
+while teapot is silent
+  wait
+put teabag in mug
+when teapot whistles 
+  turn stove off
+  pour water from teapot into mug
+wait 2 minutes
+drink tea
