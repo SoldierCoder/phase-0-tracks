@@ -1,0 +1,19 @@
+turn towards elevator
+while doors not open 
+  wait
+while doors open 
+  move inside
+while doors not closed
+  wait
+if person.wearing(power_tie).is_present
+  follow him
+elsif
+  button.labeled(1)
+  button.press
+end
+while doors not open
+  wait
+while doors open
+  exit
+text(Ed.Drain, "elevator navigated")
+
