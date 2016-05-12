@@ -17,3 +17,19 @@ while doors open
   exit
 text(Ed.Drain, "elevator navigated")
 
+
+making-tea
+
+choose a mug
+fill mug with water
+open teapot 
+pour water from mug into teapot
+turn stove on
+while teapot is silent
+  wait
+put teabag in mug
+when teapot whistles 
+  turn stove off
+  pour water from teapot into mug
+wait 2 minutes
+drink tea
