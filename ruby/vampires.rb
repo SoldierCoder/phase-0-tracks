@@ -39,6 +39,7 @@ def applicant_status(age_right, takes_garlic, takes_insurance, name)
   status
 end
 
+
 def survey
   puts 'What is your name?'
   name = gets.chomp.split(' ').map(&:capitalize).join(' ')
@@ -67,5 +68,10 @@ def survey
 
 
 end
-survey
+
+  levels_of_paperwork_hell = question_response_integer("How many employees will be processed today?")
+
+  levels_of_paperwork_hell.times do
+   survey
+  end
 
