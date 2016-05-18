@@ -15,6 +15,14 @@ def got_age_right?(age, birth_year)
    ((rough_years - age).abs <= 1)               #  plus or minus a year
 end
 
+def allergy_check
+  puts "please enter your allergies, one at a time.  Enter 'DONE' when finished."
+  allergy = ''
+  while ((allergy != 'sunshine') && (allergy != 'done')) do 
+    allergy = gets.chomp.downcase
+  end
+  allergy
+end
 
 def applicant_status(age_right, takes_garlic, takes_insurance, name)
   
@@ -32,9 +40,19 @@ def applicant_status(age_right, takes_garlic, takes_insurance, name)
     status = "Almost certainly a vampire."
   end
   if (name == "Drake Cula" || name == "Tu Fang")
-    status = "Definitely a Vampire."
+    status = "Definitely a vampire."
   elsif (status == '')
     status = "Results inconclusive"
+  end
+  
+  allergy_status = allergy_check
+  case status
+    when "Probably not a vampire.", "Results inconclusive"
+      if allergy_status == 'sunshine'
+        status = "Participants status is upgraded to 'Probably a vampire' due to allergy to sunshine"
+      end
+    when "Probably a vampire.", "Almost certainly a vampire.", "Definitely a vampire."
+      status = status + " (also allergic to sunshine)"
   end
   status
 end
