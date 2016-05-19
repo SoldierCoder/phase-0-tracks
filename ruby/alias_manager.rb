@@ -20,3 +20,59 @@
 #     else 
 #       the letter is punctuation, leave it alone
 
+def is_vowel?(letter, vowels)
+   vowels.index(letter).nil? ? false : true
+end
+
+def is_consonant? (letter, consonants)
+    consonants.index(letter).nil?  ? false : true
+end
+def next_vowel(letter, vowels)
+  idx = vowels.index(letter)
+  letter = vowels[idx+1]
+end
+def next_consonant(letter, consonants)
+  idx = consonants.index(letter)
+  letter = consonants[idx+1]
+end
+
+def convert_name(name, vowels, consonants)
+  old_name = name
+
+  name = name.split(/\s+/).reverse
+  name[0] = name[0] + " "
+  name = name.join
+
+  len = name.length
+  for letter in 0...len do 
+    if name[letter] == " "
+      name[letter] = ' '
+    elsif is_vowel?(name[letter], vowels)
+      name[letter] = next_vowel(name[letter], vowels)
+    else is_consonant?(name[letter], consonants)
+      name[letter] = next_consonant(name[letter], consonants)
+    end    
+  end
+  puts "#{old_name} is now named #{name}"
+
+end
+
+def driver()
+
+  all_letters = "abcdefghijklmnopqrstuvwxyzbABCDEFGHIJKLMNOPQRSTUVWXYZB".chars
+  vowels = "aeiouaAEIOUA".chars
+  consonants  = all_letters - vowels
+  name = ''
+  while (name != 'quit') do 
+
+    puts "Please enter your real full name (or 'quit' to exit):"
+    name = gets.chomp
+    if name.downcase != 'quit'
+      convert_name(name, vowels, consonants)
+    end
+  end
+ 
+ # name = "Felicia Torres"
+end
+
+driver
