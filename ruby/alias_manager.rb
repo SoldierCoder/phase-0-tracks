@@ -37,7 +37,6 @@ def next_consonant(letter, consonants)
 end
 
 def convert_name(name, vowels, consonants)
-  old_name = name
 
   name = name.split(/\s+/).reverse
   name[0] = name[0] + " "
@@ -53,7 +52,7 @@ def convert_name(name, vowels, consonants)
       name[letter] = next_consonant(name[letter], consonants)
     end    
   end
-  puts "#{old_name} is now named #{name}"
+  name
 
 end
 
@@ -62,16 +61,22 @@ def driver()
   all_letters = "abcdefghijklmnopqrstuvwxyzbABCDEFGHIJKLMNOPQRSTUVWXYZB".chars
   vowels = "aeiouaAEIOUA".chars
   consonants  = all_letters - vowels
+  name_data = []
+
   name = ''
   while (name != 'quit') do 
 
     puts "Please enter your real full name (or 'quit' to exit):"
     name = gets.chomp
+    old_name = name
     if name.downcase != 'quit'
-      convert_name(name, vowels, consonants)
+      new_name = convert_name(name, vowels, consonants)
+      two_fer = {old_name: old_name, new_name: new_name}
+      name_data.push(two_fer)
+
     end
   end
- 
+  name_data.each {|an_alias| puts "#{an_alias[:old_name]} is now #{an_alias[:new_name]}"}
  # name = "Felicia Torres"
 end
 
