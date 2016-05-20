@@ -1,10 +1,16 @@
 # Method to create a list
 # input: string of items separated by spaces (example: "carrots apples cereal pizza")
 # steps: 
+# accept a string (called big_string) with possibly multiple entries of items with no quantities seperated by spaces as the initial argument given to us
+# create an array out of big_string by splitting the string on spaces
+#
+
+
+
 def init_list(big_string)
 
   item_names = big_string.split(/\s+/)
-  items= {}
+  items= 
   item_names.each do |item|
     items[item.to_sym] = 0
   end
