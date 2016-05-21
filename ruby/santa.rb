@@ -1,4 +1,9 @@
 class Santa
+  attr_reader :age, :ethnicity
+  attr_accessor :gender
+  
+
+
   def initialize(gender, ethnicity)
     
     puts "initializing Santa instance..."
@@ -27,27 +32,17 @@ class Santa
     @reindeer_ranking.delete_at(idx)
     @reindeer_ranking.push(reindeer_name) 
   end
-
-  def gender=(to_gender)
-    @gender = to_gender
-  end
-
-  def gender
-    @gender
-  end
-
-  def age
-    @age
-  end
   
-  def ethnicity
-    @ethnicity
-  end
   def report
-    s = "Santas age is #{@age}.  "
+    s = "Santas age is #{@age}. Santas gender is #{@gender}  "
     celebrate_birthday
     s = s + "But wait, Santa JUST had a birthday!  Santa age now is: #{@age}\nSanta is peaceful and happy...\n"
-    
+    s = s + "Santa's reindeer are in this order: \n"
+    @reindeer_ranking.each {|reindeer| s = s + "#{reindeer}\n" }
+    s = s + "\n\nThat is, until Santa got angry as Dasher, who was always trying to get in front of Rudolph.\n"
+    get_mad_at("Dasher")
+    s = s + "So Santa sent Dasher to the naughty reindeer place -- the back of the line!\n"
+    @reindeer_ranking.each {|reindeer| s = s + "#{reindeer}\n" }
 
     puts s
   end
@@ -61,7 +56,4 @@ santas.last.gender = "N/A"
 puts "Santa's gender is #{santas.last.gender}"
 santas << Santa.new("female", "Latino")
 santas << Santa.new("bigender", "white")
-santas << Santa.new("male", "Japanese")
-santas << Santa.new("female", "prefer not to say")
-santas << Santa.new("gender fluid", "Mystical Creature (unicorn)")
-santas << Santa.new("N/A", "Latino")
+
