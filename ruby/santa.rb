@@ -1,18 +1,18 @@
 class Santa
-  attr_reader :age, :ethnicity
-  attr_accessor :gender
+  attr_accessor :gender, :age, :ethnicity
   
 
 
   def initialize(gender, ethnicity)
     
-    puts "initializing Santa instance..."
+    
     @gender = gender
     @ethnicity = ethnicity
 
     @reindeer_ranking = ['Rudolph', 'Dasher', 'Dancer',
       'Prancer', 'Vixen', 'Comet', 'Cupid', 'Donner', 'Blitzen']
     @age = 0
+    puts "initialized Santa: gender #{@gender}, ethnicity: #{@ethnicity}"
   end
 
   def speaks
@@ -34,26 +34,33 @@ class Santa
   end
   
   def report
-    s = "Santas age is #{@age}. Santas gender is #{@gender}  "
-    celebrate_birthday
-    s = s + "But wait, Santa JUST had a birthday!  Santa age now is: #{@age}\nSanta is peaceful and happy...\n"
-    s = s + "Santa's reindeer are in this order: \n"
-    @reindeer_ranking.each {|reindeer| s = s + "#{reindeer}\n" }
-    s = s + "\n\nThat is, until Santa got angry as Dasher, who was always trying to get in front of Rudolph.\n"
-    get_mad_at("Dasher")
-    s = s + "So Santa sent Dasher to the naughty reindeer place -- the back of the line!\n"
-    @reindeer_ranking.each {|reindeer| s = s + "#{reindeer}\n" }
-
+    s = "Santa\'s age is #{@age}. Santa\'s gender is #{@gender} Santa\'s ethnicity is #{@ethnicity}"
+    
     puts s
   end
 end
 
+#driver code here
+sample_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
+sample_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
 
+def random_age
+  r = rand(0...141)
+end
 santas = []
-santas << Santa.new("female", "Ukrainian")
-santas.last.report
-santas.last.gender = "N/A"
-puts "Santa's gender is #{santas.last.gender}"
-santas << Santa.new("female", "Latino")
-santas << Santa.new("bigender", "white")
 
+i = 0
+while (i <= 1000) do 
+
+  g = rand(0...8)
+  e = rand(0...6)
+  s = Santa.new(sample_genders[g], sample_ethnicities[e])
+  s.age = random_age  
+  santas << s 
+  i = i + 1
+
+end
+  
+  puts "\n\n"
+
+santas.each { |santa| santa.report }
