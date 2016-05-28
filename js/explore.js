@@ -24,9 +24,9 @@ var swap_letters = function(str, index_left, index_right) {
 }
 
 var reverse = function (str) {
-
+  var return_string = ''
   index_left = 0;
-  index_right = my_str.length - 1;
+  index_right = str.length - 1;
 
   swaps_left = swaps_to_do(str);
 
@@ -36,7 +36,8 @@ var reverse = function (str) {
     index_right--;
     swaps_left--;
   }
-  return (str);
+  return_str = str.join('');
+  return (return_str);
 }
    
 var swaps_to_do  = function(str) {
@@ -45,9 +46,11 @@ var swaps_to_do  = function(str) {
 };
 
 
-var my_str = "water".split('');
-my_str = reverse(my_str);
-var s  = my_str.join('');
-console.log(s);
+var some_str = "water".split('');
+var my_str = reverse(some_str);
+// var s  = my_str.join('');
+if (1 == 1) {
+  console.log(my_str);
+}
 
 
