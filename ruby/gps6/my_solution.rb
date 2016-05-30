@@ -9,55 +9,53 @@
 require_relative 'state_data'
 
 class VirusPredictor
+  attr :normalized_population_density, true
   # initializing instances of the VirrusPredictor    
   def initialize(state_of_origin, population_density, population)
     @state = state_of_origin
     @population = population
     @population_density = population_density
+    @normalized_population_density =  @population_density > 200 ? 200 : @population_density
   end
   # virus_effects calls predicted_deaths and calls speed_of_spread
   def virus_effects
-    predicted_deaths(@population_density, @population, @state)
-    speed_of_spread(@population_density, @state)
+    
+    predicted_deaths
+    speed_of_spread
   end
 
   private
+  
   # based on population_density it create a SWAG about predicted deaths and prints it.
-  def predicted_deaths(population_density, population, state)
+  def predicted_deaths
     # predicted deaths is solely based on population density
-    if @population_density >= 200
-      number_of_deaths = (@population * 0.4).floor
-    elsif @population_density >= 150
-      number_of_deaths = (@population * 0.3).floor
-    elsif @population_density >= 100
-      number_of_deaths = (@population * 0.2).floor
-    elsif @population_density >= 50
-      number_of_deaths = (@population * 0.1).floor
-    else
-      number_of_deaths = (@population * 0.05).floor
-    end
+    magic_numbers = [0.05, 0.1, 0.2, 0.3, 0.4]
+    casualty_rate = magic_numbers[(@normalized_population_density / 50)]
+    number_of_deaths = (@population * casualty_rate).floor
 
     print "#{@state} will lose #{number_of_deaths} people in this outbreak"
-
   end
   # estimates the speed of spread, based on population_density and prints
   # it is worth noting the return value will be nil
-  def speed_of_spread(population_density, state) #in months
+  def speed_of_spread #in months
     # We are still perfecting our formula here. The speed is also affected
     # by additional factors we haven't added into this functionality.
-    speed = 0.0
+    magic_numbers = [2.5, 2.0, 1.5, 1.0, 0.5]
+    speed = magic_numbers[(@normalized_population_density / 50)]
 
-    if @population_density >= 200
-      speed += 0.5
-    elsif @population_density >= 150
-      speed += 1
-    elsif @population_density >= 100
-      speed += 1.5
-    elsif @population_density >= 50
-      speed += 2
-    else
-      speed += 2.5
-    end
+    # speed = 0.0
+
+    # if @population_density >= 200
+    #   speed += 0.5
+    # elsif @population_density >= 150
+    #   speed += 1
+    # elsif @population_density >= 100
+    #   speed += 1.5
+    # elsif @population_density >= 50
+    #   speed += 2
+    # else
+    #   speed += 2.5
+    # end
 
     puts " and will spread across the state in #{speed} months.\n\n"
 
