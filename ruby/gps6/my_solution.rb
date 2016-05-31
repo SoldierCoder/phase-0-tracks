@@ -9,25 +9,50 @@
 require_relative 'state_data'
 
 class VirusPredictor
+<<<<<<< HEAD
+  attr :normalized_population_density, true
+=======
   attr :state, :population, :population_density
+>>>>>>> master
   # initializing instances of the VirrusPredictor    
   def initialize(state_of_origin, population_density, population)
     @state = state_of_origin
     @population = population
     @population_density = population_density
+    @normalized_population_density =  @population_density > 200 ? 200 : @population_density
   end
   # virus_effects calls predicted_deaths and calls speed_of_spread
+  
+  #############################
+  # putting private up here would effectively cut us off from the predicted_deaths 
+  # and speed_of_spread methods.  Private helps to demarcate, or, set boundries for the 
+  # interface to our class.  By making prediced_deaths and speed_of_spread private we are 
+  # saying that these methods are out of bounds to the public, and should be called only 
+  # internally.
+
   def virus_effects
-    predicted_deaths(@population_density, @population, @state)
-    speed_of_spread(@population_density, @state)
+    
+    predicted_deaths
+    speed_of_spread
   end
 
   private
+<<<<<<< HEAD
+  
+=======
 
 
+>>>>>>> master
   # based on population_density it create a SWAG about predicted deaths and prints it.
-  def predicted_deaths(population_density, population, state)
+  def predicted_deaths
     # predicted deaths is solely based on population density
+<<<<<<< HEAD
+    magic_numbers = [0.05, 0.1, 0.2, 0.3, 0.4]
+    casualty_rate = magic_numbers[(@normalized_population_density / 50)]
+    number_of_deaths = (@population * casualty_rate).floor
+
+    print "#{@state} will lose #{number_of_deaths} people in this outbreak"
+=======
     if population_density >= 200
       number_of_deaths = (population * 0.4).floor               #population * popul
     elsif population_density >= 150                             #  
@@ -42,25 +67,44 @@ class VirusPredictor
 
     print "#{state} will lose #{number_of_deaths} people in this outbreak"
 
+>>>>>>> master
   end
   # estimates the speed of spread, based on population_density and prints
   # it is worth noting the return value will be nil
-  def speed_of_spread(population_density, state) #in months
+  def speed_of_spread #in months
     # We are still perfecting our formula here. The speed is also affected
     # by additional factors we haven't added into this functionality.
-    speed = 0.0
+<<<<<<< HEAD
+    magic_numbers = [2.5, 2.0, 1.5, 1.0, 0.5]
+    speed = magic_numbers[(@normalized_population_density / 50)]
 
-    if population_density >= 200
-      speed += 0.5
-    elsif population_density >= 150
-      speed += 1
-    elsif population_density >= 100
-      speed += 1.5
-    elsif population_density >= 50
-      speed += 2
-    else
-      speed += 2.5
-    end
+    # speed = 0.0
+
+    # if @population_density >= 200
+    #   speed += 0.5
+    # elsif @population_density >= 150
+    #   speed += 1
+    # elsif @population_density >= 100
+    #   speed += 1.5
+    # elsif @population_density >= 50
+    #   speed += 2
+    # else
+    #   speed += 2.5
+    # end
+    # speed = 0.0
+
+    # if population_density >= 200
+    #   speed += 0.5
+    # elsif population_density >= 150
+    #   speed += 1
+    # elsif population_density >= 100
+    #   speed += 1.5
+    # elsif population_density >= 50
+    #   speed += 2
+    # else
+    #   speed += 2.5
+    # end
+
 
     puts " and will spread across the state in #{speed} months.\n\n"
 
@@ -94,3 +138,23 @@ end
 
 #=======================================================================
 # Reflection Section
+# What are the differences between the two different hash syntaxes shown in the state_data 
+# file?
+# One uses the hash "rocket" (=>) to seperate keys and values, as opposed to using the 
+# colon (:).
+# What does require_relative do? This command loads features (or in this case, data, by
+# searching relative to the directory in which the file from which it is called resides. 
+# How is it different from require?  Require does not know about the current working 
+# directory
+# What are some ways to iterate through a hash?
+# obviously, hashes can iterate with a variety of blocks (#each, #select, #reject)
+# When refactoring virus_effects, what stood out to you about the variables, if anything?
+# It kind of blew my mind that there could be a program that did nothing to its whole 
+# data set.
+# What concept did you most solidify in this challenge? the need for testing.
+
+
+
+
+
+
