@@ -18,6 +18,14 @@ class VirusPredictor
     @normalized_population_density =  @population_density > 200 ? 200 : @population_density
   end
   # virus_effects calls predicted_deaths and calls speed_of_spread
+  
+  #############################
+  # putting private up here would effectively cut us off from the predicted_deaths 
+  # and speed_of_spread methods.  Private helps to demarcate, or, set boundries for the 
+  # interface to our class.  By making prediced_deaths and speed_of_spread private we are 
+  # saying that these methods are out of bounds to the public, and should be called only 
+  # internally.
+
   def virus_effects
     
     predicted_deaths
@@ -89,3 +97,23 @@ end
 
 #=======================================================================
 # Reflection Section
+# What are the differences between the two different hash syntaxes shown in the state_data 
+# file?
+# One uses the hash "rocket" (=>) to seperate keys and values, as opposed to using the 
+# colon (:).
+# What does require_relative do? This command loads features (or in this case, data, by
+# searching relative to the directory in which the file from which it is called resides. 
+# How is it different from require?  Require does not know about the current working 
+# directory
+# What are some ways to iterate through a hash?
+# obviously, hashes can iterate with a variety of blocks (#each, #select, #reject)
+# When refactoring virus_effects, what stood out to you about the variables, if anything?
+# It kind of blew my mind that there could be a program that did nothing to its whole 
+# data set.
+# What concept did you most solidify in this challenge? the need for testing.
+
+
+
+
+
+
