@@ -1,0 +1,92 @@
+select * from students;
+sqlite> select * from students;
+id|name|distance_from_site|location_native
+1|Ed Drain|2773|0
+2|Jacob Rapp|15|1
+3|Evelyn Nabicht|2193|0
+
+sqlite> update students set distance_from_site=2778 where id=1;
+
+sqlite> select * from students, books;
+id|name|distance_from_site|location_native|id|title|author|pages|lendable|owner_id
+1|Ed Drain|2778|0|1|Rails 4 Test Prescriptions|Noel Rappin|334|1|1
+1|Ed Drain|2778|0|2|SQL The Structured Query Language|Alan Forbes|110|1|1
+1|Ed Drain|2778|0|3|The Well-Grounded Rubyist|Alan Forbes|110|1|2
+1|Ed Drain|2778|0|4|Cascading Style Sheets|Håkon Wium Lee|395|1|1
+1|Ed Drain|2778|0|5|The RSpec Book|David Chelimsky|450|0|3
+1|Ed Drain|2778|0|6|Practical Object-Oriented Design in Ruby|Sandi Metz|219|0|3
+1|Ed Drain|2778|0|7|Rails, Angular, Postgres, and Bootstrap|David Bryant Copeland|306|0|1
+1|Ed Drain|2778|0|8|Ruby Performance Optimization|Alexander Dymo|185|1|2
+1|Ed Drain|2778|0|9|Practical Vim|Drew Neil|354|1|2
+1|Ed Drain|2778|0|10|Pragmatic Guide to Git|Drew Neil|160|1|3
+2|Jacob Rapp|15|1|1|Rails 4 Test Prescriptions|Noel Rappin|334|1|1
+2|Jacob Rapp|15|1|2|SQL The Structured Query Language|Alan Forbes|110|1|1
+2|Jacob Rapp|15|1|3|The Well-Grounded Rubyist|Alan Forbes|110|1|2
+2|Jacob Rapp|15|1|4|Cascading Style Sheets|Håkon Wium Lee|395|1|1
+2|Jacob Rapp|15|1|5|The RSpec Book|David Chelimsky|450|0|3
+2|Jacob Rapp|15|1|6|Practical Object-Oriented Design in Ruby|Sandi Metz|219|0|3
+2|Jacob Rapp|15|1|7|Rails, Angular, Postgres, and Bootstrap|David Bryant Copeland|306|0|1
+2|Jacob Rapp|15|1|8|Ruby Performance Optimization|Alexander Dymo|185|1|2
+2|Jacob Rapp|15|1|9|Practical Vim|Drew Neil|354|1|2
+2|Jacob Rapp|15|1|10|Pragmatic Guide to Git|Drew Neil|160|1|3
+3|Evelyn Nabicht|2193|0|1|Rails 4 Test Prescriptions|Noel Rappin|334|1|1
+3|Evelyn Nabicht|2193|0|2|SQL The Structured Query Language|Alan Forbes|110|1|1
+3|Evelyn Nabicht|2193|0|3|The Well-Grounded Rubyist|Alan Forbes|110|1|2
+3|Evelyn Nabicht|2193|0|4|Cascading Style Sheets|Håkon Wium Lee|395|1|1
+3|Evelyn Nabicht|2193|0|5|The RSpec Book|David Chelimsky|450|0|3
+3|Evelyn Nabicht|2193|0|6|Practical Object-Oriented Design in Ruby|Sandi Metz|219|0|3
+3|Evelyn Nabicht|2193|0|7|Rails, Angular, Postgres, and Bootstrap|David Bryant Copeland|306|0|1
+3|Evelyn Nabicht|2193|0|8|Ruby Performance Optimization|Alexander Dymo|185|1|2
+3|Evelyn Nabicht|2193|0|9|Practical Vim|Drew Neil|354|1|2
+3|Evelyn Nabicht|2193|0|10|Pragmatic Guide to Git|Drew Neil|160|1|3
+
+delete from books where id=5;
+
+sqlite> select title, lendable, name as "Owned by" from books, students where students.id=owner_id order by students.id;
+title|lendable|Owned by
+Rails 4 Test Prescriptions|1|Ed Drain
+SQL The Structured Query Language|1|Ed Drain
+Cascading Style Sheets|1|Ed Drain
+Rails, Angular, Postgres, and Bootstrap|0|Ed Drain
+The Well-Grounded Rubyist|1|Jacob Rapp
+Ruby Performance Optimization|1|Jacob Rapp
+Practical Vim|1|Jacob Rapp
+Practical Object-Oriented Design in Ruby|0|Evelyn Nabicht
+Pragmatic Guide to Git|1|Evelyn Nabicht
+
+
+
+sqlite> select name, title, lendable from students right join books;
+Error: RIGHT and FULL OUTER JOINs are not currently supported
+
+sqlite> select name, title, lendable from students left join books;
+Ed Drain|Rails 4 Test Prescriptions|1
+Ed Drain|SQL The Structured Query Language|1
+Ed Drain|The Well-Grounded Rubyist|1
+Ed Drain|Cascading Style Sheets|1
+Ed Drain|Practical Object-Oriented Design in Ruby|0
+Ed Drain|Rails, Angular, Postgres, and Bootstrap|0
+Ed Drain|Ruby Performance Optimization|1
+Ed Drain|Practical Vim|1
+Ed Drain|Pragmatic Guide to Git|1
+Jacob Rapp|Rails 4 Test Prescriptions|1
+Jacob Rapp|SQL The Structured Query Language|1
+Jacob Rapp|The Well-Grounded Rubyist|1
+Jacob Rapp|Cascading Style Sheets|1
+Jacob Rapp|Practical Object-Oriented Design in Ruby|0
+Jacob Rapp|Rails, Angular, Postgres, and Bootstrap|0
+Jacob Rapp|Ruby Performance Optimization|1
+Jacob Rapp|Practical Vim|1
+Jacob Rapp|Pragmatic Guide to Git|1
+Evelyn Nabicht|Rails 4 Test Prescriptions|1
+Evelyn Nabicht|SQL The Structured Query Language|1
+Evelyn Nabicht|The Well-Grounded Rubyist|1
+Evelyn Nabicht|Cascading Style Sheets|1
+Evelyn Nabicht|Practical Object-Oriented Design in Ruby|0
+Evelyn Nabicht|Rails, Angular, Postgres, and Bootstrap|0
+Evelyn Nabicht|Ruby Performance Optimization|1
+Evelyn Nabicht|Practical Vim|1
+Evelyn Nabicht|Pragmatic Guide to Git|1
+
+
+
