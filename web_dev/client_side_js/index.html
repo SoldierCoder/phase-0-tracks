@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Flip the Tables</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
   </head>
   <body>
     <h1>Tic-Tac-Toe</h1>
@@ -19,9 +20,10 @@
       <tr>
         <td>&nbsp;X&nbsp;</td>
         <td>&nbsp;O&nbsp;</td>
-        <td class="winner">&nbsp;X&nbsp;</td>
+        <td class="winner" id='last_x'>&nbsp;X&nbsp;</td>
       </tr>
     </table>
+    <button id="timeshifter" type="button">Go back in time!</button>
     <script src="show_winner.js"></script>
   </body>
 </html>
